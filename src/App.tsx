@@ -1,25 +1,36 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import logo from './logo.svg';
 import './App.css';
 
+import Home from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import FeaturePage from './pages/FeaturePage';
+import DemoPage from './pages/DemoPage';
+import AccountPage from './pages/AccountPage';
+import NewPassword from './pages/NewPassword';
+import BanklLogin from './pages/BankLogin';
+import LoginOptions from './pages/LoginOptions';
+import ResetPassword from './pages/ResetPassword';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<LoginOptions />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/feature' element={<FeaturePage />} />
+        <Route path='/request-a-demo' element={<DemoPage />} />
+        <Route path='/account' element={<AccountPage />} />
+        <Route path='/new-password' element={<NewPassword />} />
+        <Route path='/bank-login' element={<BanklLogin />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

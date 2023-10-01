@@ -1,0 +1,437 @@
+@import '../general/variable';
+
+.home--container {
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(
+      150deg,
+      rgb(0, 122, 130, 0.2),
+      15%,
+      rgb(13, 48, 63, 1)
+    ),
+    url('../../../public/images/qapp-dashboard-background.png') center center
+      no-repeat;
+
+  background-size: cover;
+
+  // padding-block: 2.4rem;
+  // height: 261.4rem;
+
+  // * HERO CONTAINER
+  @include blurry--background(hero--container);
+  .hero--container {
+    max-width: $container--width;
+    margin: auto;
+    padding: 5.1rem;
+    height: 55.3rem;
+
+    margin-bottom: 22.4rem;
+
+    position: relative;
+    top: 11.9rem;
+    z-index: 1;
+
+    // border: 2px solid;
+    // border: 2px solid rgb(251, 251, 251, 0.4);
+    // border-radius: 8.6rem;
+    // backdrop-filter: blur(3px);
+    // background: linear-gradient(
+    //   91.43deg,
+    //   rgba(255, 255, 255, 0.143) -19.87%,
+    //   rgba(251, 251, 251, 0.165) 116%
+    // );
+
+    display: flex;
+
+    // justify-content: center;
+    align-items: flex-start;
+
+    h1,
+    h3 {
+      color: $lightest--text__color;
+    }
+
+    .hero--description {
+      justify-self: flex-start;
+      width: 50%;
+
+      h1 {
+        margin-block: 2.4rem;
+      }
+    }
+
+    .hero--image__container {
+      // position: relative;
+
+      .hero--image {
+        // transform: translate(35%, -8%);
+        // width: 100%;
+        position: absolute;
+        right: -16rem;
+        top: 0rem;
+      }
+
+      .lp--logo {
+        position: absolute;
+        filter: invert(70%) sepia(31%) saturate(597%) hue-rotate(131deg)
+          brightness(85%) contrast(92%);
+
+        top: -7.2rem;
+        right: 0;
+      }
+    }
+  }
+
+  // * DOWNLOAD FROM STORE
+  .download--stores__container {
+    background: linear-gradient(124.53deg, #062837 5.38%, #06444d 122.33%);
+
+    height: 32.3rem;
+    width: 100%;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // gap: 2.4rem;
+
+    .download--stores {
+      margin: auto;
+      width: 55.3rem;
+      padding-block: 3.15rem;
+
+      display: flex;
+      justify-content: center;
+      gap: 2.4rem;
+
+      border-radius: 17px;
+      background: linear-gradient(
+          82.97deg,
+          rgba(196, 196, 196, 0.0468) -2.61%,
+          rgba(255, 255, 255, 0.0576) 120.95%
+        ),
+        linear-gradient(
+          216.13deg,
+          rgba(255, 255, 255, 0.115) -57.9%,
+          rgba(255, 255, 255, 0) 192.02%
+        );
+    }
+
+    h2 {
+      color: #0fcac8;
+      margin: auto;
+    }
+  }
+
+  // * SERVICES
+  .services--container {
+    background-color: #063043;
+    height: 53rem;
+
+    display: flex;
+    margin-bottom: 8.1rem;
+
+    .services {
+      width: $container--width;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin: auto;
+
+      .service--container {
+        position: relative;
+        color: $lightest--text__color;
+        align-self: center;
+        text-align: center;
+
+        padding: 2.1rem;
+        border-radius: 50px;
+
+        border: 2px solid rgba(255, 255, 255, 0.3);
+
+        // border-image-source: linear-gradient(216.13deg, rgba(255, 255, 255, 0.46) -57.9%, rgba(255, 255, 255, 0) 192.02%);
+
+        background: linear-gradient(
+          82.97deg,
+          rgba(196, 196, 196, 0.1872) -2.61%,
+          rgba(255, 255, 255, 0.2304) 120.95%
+        );
+
+        height: 39.6rem;
+        width: 29.7rem;
+
+        // margin: auto;
+
+        .service--description {
+          padding-block: 1.2rem;
+          line-height: 19.53px;
+        }
+
+        .arrow--icon {
+          position: absolute;
+          bottom: 3.2rem;
+        }
+
+        .service--icon {
+          background-color: #235a74;
+          padding: 1.2rem;
+          border-radius: 14.64px;
+        }
+
+        h4 {
+          margin-top: 3.2rem;
+        }
+
+        p {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  // * PARTNERSHIP
+  @include blurry--background(partnerships--container);
+
+  .partnerships--container {
+    height: 35.2rem;
+    width: $container--width;
+    margin: auto;
+    padding: 7.1rem;
+    margin-bottom: 8.1rem;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h2 {
+      color: $lightest--text__color;
+    }
+
+    .companies {
+      width: 90%;
+      margin-inline: auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  // * FOOTER
+  .footer {
+    background-color: #063043;
+    position: relative;
+    bottom: 0;
+
+    // height: 20rem;
+
+    padding-block: 9.8rem;
+
+    .footer--contents {
+      width: 60%;
+      margin: auto;
+
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        color: $lightest--text__color;
+
+        font-size: 2.5rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// * MEDIA QUERY
+////////////*********** //////////
+//////////// * 1200px //////////
+////////////*********** //////////
+@media (max-width: 75em) {
+  .home--container {
+    .hero--container {
+      max-width: 90%;
+
+      .hero--description {
+        width: 70%;
+      }
+
+      .hero--image__container {
+        .hero--image {
+          right: -20rem;
+        }
+
+        .lp--logo {
+          top: -9.2rem;
+        }
+      }
+    }
+
+    .services--container {
+      .services {
+        width: 90%;
+      }
+    }
+
+    .partnerships--container {
+      width: 90%;
+
+      .companies {
+        width: 100%;
+      }
+    }
+  }
+}
+
+////////////*********** //////////
+//////////// * 1000px //////////
+////////////*********** //////////
+@media (max-width: 63em) {
+  .home--container {
+    .hero--container {
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+
+      .hero--image__container {
+        width: 70%;
+
+        .hero--image {
+          width: 100%;
+          position: relative;
+          right: 0;
+        }
+      }
+
+      .hero--description {
+        width: 100%;
+
+        text-align: center;
+      }
+    }
+
+    .partnerships--container {
+      height: 100%;
+
+      .companies {
+        margin-top: 3.2rem;
+        width: 80%;
+
+        display: grid;
+        grid-template-columns: auto auto;
+        row-gap: 3.2rem;
+      }
+    }
+
+    .services--container {
+      height: 100%;
+      padding-block: 6.2rem;
+
+      .services {
+        flex-direction: column;
+        gap: 3.2rem;
+
+        .service--container {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+////////////*********** //////////
+//////////// * 800px //////////
+////////////*********** //////////
+@media (max-width: 50em) {
+  .home--container {
+    .partnerships--container {
+      .companies {
+        width: 100%;
+      }
+    }
+
+    .download--stores__container {
+      .download--stores {
+        width: 90%;
+      }
+    }
+  }
+}
+
+////////////*********** //////////
+//////////// * 650px //////////
+////////////*********** //////////
+@media (max-width: 41em) {
+  .home--container {
+    .partnerships--container {
+      .companies {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .services--container {
+      .services {
+        .service--container {
+          width: 70%;
+        }
+      }
+    }
+
+    .hero--container {
+      .hero--image__container {
+        .lp--logo {
+          top: -11.2rem;
+        }
+      }
+    }
+
+    .download--stores__container {
+      .download--stores {
+        img {
+          width: 40%;
+        }
+        width: 90%;
+      }
+    }
+
+    .footer {
+      .footer--contents {
+        width: 80%;
+      }
+    }
+  }
+}
+
+////////////*********** //////////
+//////////// * 500px //////////
+////////////*********** //////////
+@media (max-width: 31.25em) {
+  .home--container {
+    .hero--container {
+      max-width: 96%;
+      padding-inline: 2.4rem;
+
+      .hero--image__container {
+        width: 70%;
+
+        .hero--image {
+          width: 100%;
+          position: relative;
+          right: 0;
+        }
+      }
+
+      .hero--description {
+        width: 100%;
+
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+// * FONTS
+$regular--text: 2.1rem;
+
+// * COLORS
+$primary--color: #007a82;
+$secondary--color: #0e3141;
+
+$lightest--text__color: #ffffff;
+
+// * WIDTH
+$container--width: 122rem;
+
+// * MARGINS AND PADDINGS
+
+// * MIXINS
+@mixin blurry--background($class) {
+  .#{$class} {
+    border: 2px solid rgb(251, 251, 251, 0.4);
+    border-radius: 8.6rem;
+    backdrop-filter: blur(3px);
+    background: linear-gradient(
+      91.43deg,
+      rgba(255, 255, 255, 0.143) -19.87%,
+      rgba(251, 251, 251, 0.165) 116%
+    );
+  }
+}

@@ -1,0 +1,111 @@
+@import './variable';
+
+.nav--containers {
+  width: 40%;
+  margin: auto;
+
+  position: relative;
+  top: 4.4rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    font-size: 2.1rem;
+    color: $lightest--text__color;
+    text-decoration: none;
+  }
+
+  .nav--container {
+    // position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    .active {
+      color: #ff6501;
+    }
+
+    .active--icon {
+      position: absolute;
+      top: 3rem;
+    }
+  }
+}
+
+.mobile--nav {
+  // overflow-y: hidden;
+  position: absolute;
+
+  z-index: 2;
+  top: 0rem;
+  left: 0rem;
+
+  a {
+    font-size: 2.1rem;
+    color: $lightest--text__color;
+    text-decoration: none;
+  }
+
+  .mobile--nav__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 40vh;
+
+    background-color: #09354a;
+
+    height: 100vh;
+    position: fixed;
+
+    .active {
+      color: #ff6501;
+    }
+  }
+
+  .close--btn {
+    width: 10%;
+    height: 10%;
+
+    filter: invert(15%) sepia(17%) saturate(3419%) hue-rotate(160deg)
+      brightness(96%) contrast(94%);
+
+    position: relative;
+    z-index: 2;
+
+    left: 40vh;
+    top: 2rem;
+  }
+
+  .menu--btn {
+    width: 10%;
+    height: 10%;
+
+    filter: invert(15%) sepia(17%) saturate(3419%) hue-rotate(160deg)
+      brightness(96%) contrast(94%);
+
+    position: relative;
+    left: 2rem;
+    top: 2rem;
+  }
+}
+
+// * MEDIA QUERY
+////////////*********** //////////
+//////////// * 1200px //////////
+////////////*********** //////////
+@media (max-width: 75em) {
+  .nav--containers {
+    width: 60%;
+  }
+}
+
+////////////*********** //////////
+//////////// * 700px //////////
+////////////*********** //////////
+@media (max-width: 44em) {
+  .nav--containers {
+    width: 80%;
+  }
+}
