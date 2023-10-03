@@ -4,6 +4,7 @@ type InputProps = {
   placeholder: string;
   type: string;
   curVal?: any;
+  maxDigits?: number;
 };
 
 function InputContainer(props: InputProps) {
@@ -18,6 +19,7 @@ function InputContainer(props: InputProps) {
         placeholder={props.placeholder}
         type={props.type}
         ref={props.curVal}
+        maxLength={props.maxDigits}
       />
     </div>
   );

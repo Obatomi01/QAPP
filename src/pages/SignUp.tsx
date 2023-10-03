@@ -5,7 +5,7 @@ import InputContainer from '../components/general/InputContainer';
 
 import styles from '../styles/login.module.scss';
 
-import NigeriaFlag from '../images/1280px-Flag_of_Nigeria 2.png';
+import NigeriaFlag from '../images/nigeria.png';
 import ArrowDown from '../images/arrow down.png';
 import ShowPassword from '../images/check password.png';
 import Spinner from '../images/loading.png';
@@ -18,11 +18,47 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { object, string, ref } from 'yup';
 import { Formik, Form, Field } from 'formik';
 
+import { Checkbox } from '@mui/material';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
+import CountryOptions from '../components/CountryOptions';
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    status: {
+      danger: string;
+      borderColor: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  interface ThemeOptions {
+    status?: {
+      danger?: string;
+      borderColor: string;
+    };
+  }
+}
+
+const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
+  color: theme.status.borderColor,
+  '&.Mui-checked': {
+    color: theme.status.danger,
+  },
+}));
+
+const theme = createTheme({
+  status: {
+    danger: '#fff',
+    borderColor: '#7165E34A',
+  },
+});
+
 type FormMessage = { message: string; ok: boolean; showForm: boolean };
 
 function SignUp() {
   const emailRef = useRef<any>();
-  const passwordRef = useRef<any>();
+  const phoneRef = useRef<any>();
   const [formMessage, setFormMessage] = useState<FormMessage>({
     message: '',
     ok: false,
@@ -35,6 +71,9 @@ function SignUp() {
 
   const [showSpinner, setShowSpinner] = useState(false);
 
+  const [showCountryOptions, setShowCountryOptions] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState<any>(NigeriaFlag);
+
   const userSchema = object({
     firstName: string().required(),
     lastName: string().required(),
@@ -42,10 +81,7 @@ function SignUp() {
       .required('Phone number is required')
       .min(10, 'Phone number must contains numbers at least 10 digits long')
       .max(15, 'Phone number must be no more than 15 digits long')
-      .matches(
-        /^\+234[789][01]\d{8}$/,
-        'Phone number must be a valid NGN phone number starting with +234'
-      ),
+      .matches(/^0[789][01]\d{8}$/, 'Invalid phone number format'),
     email: string().required('Email is required').email(),
     password: string()
       .required('Password is required')
@@ -56,6 +92,22 @@ function SignUp() {
       ),
     confirmPassword: string().oneOf([ref('password')], 'Passwords must match'),
   });
+
+  const onPhoneChangeHandler = (
+    fieldName: string,
+    value: any,
+    formikProps: any
+  ) => {
+    // Remove non-numeric characters
+    let input = value.replace(/\D/g, '');
+
+    // Limit to a specific number of digits (e.g., 5 digits)
+    if (input.length > 11) {
+      input = input.slice(0, 11);
+    }
+
+    formikProps.setFieldValue(fieldName, input);
+  };
 
   const submitFormHandler = async (values: any) => {
     try {
@@ -90,7 +142,7 @@ function SignUp() {
       const error = err.message;
 
       setFormMessage({
-        message: error,
+        message: 'User with email exists',
         showForm: true,
         ok: false,
       });
@@ -128,7 +180,7 @@ function SignUp() {
         }}
         validationSchema={userSchema}
       >
-        {({ errors, touched }: any) => (
+        {({ errors, touched, ...props }: any) => (
           <Form className={styles['sign--up__container']}>
             <Field
               placeholder='First Name'
@@ -157,22 +209,55 @@ function SignUp() {
               }}
             >
               <div className={styles['country--options']}>
-                <img src={NigeriaFlag} alt='flag icon' />
-                <img src={ArrowDown} alt='Arrow icon' />
+                <div
+                  onClick={() => setShowCountryOptions(!showCountryOptions)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1.2rem',
+                  }}
+                >
+                  <img
+                    src={selectedCountry}
+                    alt='flag icon'
+                    className={styles['selected--country']}
+                  />
+                  <img src={ArrowDown} alt='Arrow icon' />
+                </div>
+
+                <div
+                  className={`${
+                    showCountryOptions
+                      ? styles['enlarged--bank__options']
+                      : styles['collapsed--bank__options']
+                  } ${styles['country--options__dropdown']}`}
+                >
+                  <CountryOptions
+                    onSelectedCountryHandler={(option: any) => {
+                      setSelectedCountry(option);
+                    }}
+                  />
+                </div>
               </div>
 
               <Field
+                type='number'
+                inputMode='numeric'
                 placeholder='Phone'
                 name='phone'
                 style={{
                   marginBottom: '0rem',
                 }}
+                onChange={(e: any) =>
+                  onPhoneChangeHandler('phone', e.target.value, props)
+                }
+                value={props.values.phone}
               />
             </div>
             {errors.phone && touched.phone ? (
               <p
                 style={{
-                  color: 'red',
+                  color: '#e63a17',
                   fontSize: '1.4rem',
                   marginTop: '0.4rem',
                 }}
@@ -195,7 +280,7 @@ function SignUp() {
             {errors.email && touched.email ? (
               <p
                 style={{
-                  color: 'red',
+                  color: '#db482a',
                   fontSize: '1.4rem',
                   marginBottom: '0.8rem',
                   marginTop: '0.4rem',
@@ -235,7 +320,7 @@ function SignUp() {
             {errors.password && touched.password ? (
               <p
                 style={{
-                  color: 'red',
+                  color: '#db482a',
                   fontSize: '1.4rem',
                   marginBottom: '0.8rem',
                   marginTop: '0.4rem',
@@ -273,7 +358,7 @@ function SignUp() {
             {errors.confirmPassword && touched.confirmPassword ? (
               <p
                 style={{
-                  color: 'red',
+                  color: '#db482a',
                   fontSize: '1.4rem',
                   marginBottom: '0.8rem',
                   marginTop: '0.4rem',
@@ -298,9 +383,11 @@ function SignUp() {
                 textAlign: 'left',
                 position: 'relative',
                 marginBottom: '1.2rem',
+                width: '95%',
+                marginInline: 'auto',
               }}
             >
-              <div className={styles['checkbox--container']}>
+              {/* <div className={styles['checkbox--container']}>
                 <input
                   type='checkbox'
                   style={{
@@ -309,7 +396,29 @@ function SignUp() {
                   }}
                 />
                 <span className={styles['checkmark']}></span>
-              </div>
+              </div> */}
+              {/* <Checkbox
+                {...label}
+                sx={{
+                  color: grey[50],
+                  '&.Mui-checked': {
+                    color: grey[50],
+                  },
+                  borderRadius: '2px',
+                }}
+              /> */}
+              <ThemeProvider theme={theme}>
+                <CustomCheckbox
+                  {...label}
+                  sx={{
+                    backgroundColor: '#032130',
+                    height: '12px',
+                    width: '12px',
+                    borderRadius: '2px',
+                    padding: 0,
+                  }}
+                />
+              </ThemeProvider>
               <p
                 style={{
                   fontSize: '1.1rem',
