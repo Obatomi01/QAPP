@@ -100,6 +100,7 @@ function BanklLogin() {
             <BankOptions
               onChangeOptionHandler={(option: any) => {
                 setSelectedOption(option);
+                setShowBankOptions(false);
               }}
             />
           </div>

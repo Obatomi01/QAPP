@@ -235,6 +235,7 @@ function SignUp() {
                   <CountryOptions
                     onSelectedCountryHandler={(option: any) => {
                       setSelectedCountry(option);
+                      setShowCountryOptions(false);
                     }}
                   />
                 </div>
